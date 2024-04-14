@@ -1,5 +1,5 @@
 import { OpenAIChatModel } from '../src/OpenAIChatModel';
-import { ChatMessage } from '../src/ChatMessage';
+import { ChatMessage, ChatHistory, AssistantMessage } from '../src/Message';
 
 describe('OpenAIChatModel', () => {
   let chatModel: OpenAIChatModel;
@@ -9,7 +9,7 @@ describe('OpenAIChatModel', () => {
   });
 
   test('should return an assistant answer without errors', async () => {
-    const messages: ChatMessage[] = [
+    const messages: ChatHistory = [
       {
         role: 'system',
         content: 'You are a helpful assistant.',
@@ -21,11 +21,14 @@ describe('OpenAIChatModel', () => {
     ];
 
     const response = await chatModel.call(messages);
+    const assistantMessage: AssistantMessage = response.answer;
 
     expect(response.answer).toBeDefined();
-    expect(response.answer.role).toBe('assistant');
-    expect(response.answer.content).toBeDefined();
+    expect(assistantMessage.role).toBe('assistant');
+    expect(assistantMessage.content).toBeDefined();
     expect(typeof response.answer.content).toBe('string');
-    expect(response.answer.content.length).toBeGreaterThan(0);
+    if (assistantMessage.content) {
+      expect(assistantMessage.content.length).toBeGreaterThan(0);
+    }
   });
 });

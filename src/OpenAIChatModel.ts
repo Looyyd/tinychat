@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ChatModel, ChatResponse } from './ChatModel';
-import { ChatMessage } from './ChatMessage';
+import { ChatMessage, ChatHistory, AssistantMessage } from './Message';
 
 export class OpenAIChatModel implements ChatModel {
   private readonly apiKey: string;
@@ -20,7 +20,7 @@ export class OpenAIChatModel implements ChatModel {
     this.baseUrl = options?.baseUrl || 'https://api.openai.com/v1';
   }
 
-  async call(messages: ChatMessage[]): Promise<ChatResponse> {
+  async call(messages: ChatHistory): Promise<ChatResponse> {
     const chatUrl = `${this.baseUrl}${this.chatEndpoint}`;
     try {
       const response = await axios.post(
@@ -37,8 +37,8 @@ export class OpenAIChatModel implements ChatModel {
         },
       );
 
-      const assistantMessage: ChatMessage = response.data.choices[0].message;
-      const history: ChatMessage[] = [...messages, assistantMessage];
+      const assistantMessage: AssistantMessage = response.data.choices[0].message;
+      const history: ChatHistory = [...messages, assistantMessage];
       const httpResponse: unknown = response.data;
 
       return {

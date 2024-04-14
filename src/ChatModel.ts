@@ -1,11 +1,11 @@
-import { ChatMessage } from './ChatMessage';
+import { ChatMessage, ChatHistory, AssistantMessage } from './Message';
 
 export interface ChatModel {
-  call(messages: ChatMessage[]): Promise<ChatResponse>;
+  call(messages: ChatHistory): Promise<ChatResponse>;
 }
 
 export interface ChatResponse {
-  history: ChatMessage[];
-  answer: ChatMessage;
+  history: ChatHistory;
+  answer: AssistantMessage;
   httpResponse: unknown;
 }
