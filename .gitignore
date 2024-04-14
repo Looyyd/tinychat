@@ -1,0 +1,44 @@
+# Node.js modules
+node_modules/
+
+# TypeScript build output
+dist/
+
+# Jest coverage output
+coverage/
+
+# Log files
+*.log
+
+# Editor files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# npm debug log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Yarn integrity file
+.yarn-integrity
