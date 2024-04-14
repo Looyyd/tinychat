@@ -1,5 +1,5 @@
 import { OpenAIChatModel } from '../src/OpenAIChatModel';
-import { ChatMessage, ChatHistory, AssistantMessage } from '../src/Message';
+import { ChatHistory, AssistantMessage } from '../src/Message';
 
 describe('OpenAIChatModel', () => {
   let chatModel: OpenAIChatModel;

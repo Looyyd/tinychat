@@ -1,4 +1,4 @@
-import { ChatMessage, ChatHistory, AssistantMessage } from './Message';
+import { ChatHistory, AssistantMessage } from './Message';
 
 export interface ChatModel {
   call(messages: ChatHistory): Promise<ChatResponse>;

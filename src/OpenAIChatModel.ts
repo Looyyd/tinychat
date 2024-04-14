@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ChatModel, ChatResponse } from './ChatModel';
-import { ChatMessage, ChatHistory, AssistantMessage } from './Message';
+import { ChatHistory, AssistantMessage } from './Message';
 
 export class OpenAIChatModel implements ChatModel {
   private readonly apiKey: string;

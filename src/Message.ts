@@ -1,5 +1,8 @@
 export type ChatRole = 'system' | 'user' | 'assistant' | 'tool';
 
+// TODO: metadata such as:
+// timestamp of message creation
+// origin of message (api or local)
 export interface BaseMessage {
   role: ChatRole;
   content?: string;
@@ -14,7 +17,7 @@ export interface SystemMessage extends BaseMessage {
 // TODO: handle images
 export interface UserMessage extends BaseMessage {
   role: 'user';
-  content: string
+  content: string;
 }
 
 export interface AssistantMessage extends BaseMessage {
