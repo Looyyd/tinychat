@@ -34,10 +34,15 @@ export interface ToolMessage extends BaseMessage {
   tool_call_id: string;
 }
 
+export interface FunctionCall {
+  arguments: string;
+  name: string;
+}
+
 export interface ToolCall {
   id: string;
   type: 'function';
-  function: object;
+  function: FunctionCall;
 }
 
 export type ChatMessage = SystemMessage | UserMessage | AssistantMessage | ToolMessage;
