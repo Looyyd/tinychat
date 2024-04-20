@@ -3,6 +3,8 @@ export type ChatRole = 'system' | 'user' | 'assistant' | 'tool';
 // TODO: metadata such as:
 // timestamp of message creation
 // origin of message (api or local)
+
+// TODO: can simplify the typescript definitions by setting chatROle as ChatMessage['role']
 export interface BaseMessage {
   role: ChatRole;
   content?: string;
@@ -23,6 +25,7 @@ export interface UserMessage extends BaseMessage {
 export interface AssistantMessage extends BaseMessage {
   role: 'assistant';
   tool_calls?: ToolCall[];
+  content: string;
 }
 
 export interface ToolMessage extends BaseMessage {

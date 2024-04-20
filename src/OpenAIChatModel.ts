@@ -39,12 +39,12 @@ export class OpenAIChatModel implements ChatModel {
 
       const assistantMessage: AssistantMessage = response.data.choices[0].message;
       const history: ChatHistory = [...messages, assistantMessage];
-      const httpResponse: unknown = response.data;
+      const rawResponse: unknown = response.data;
 
       return {
         history,
         answer: assistantMessage,
-        httpResponse,
+        rawResponse,
       };
     } catch (error) {
       console.error('Error calling OpenAI API:', error);

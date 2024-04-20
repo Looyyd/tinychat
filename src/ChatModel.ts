@@ -7,5 +7,5 @@ export interface ChatModel {
 export interface ChatResponse {
   history: ChatHistory;
   answer: AssistantMessage;
-  httpResponse: unknown;
+  rawResponse: unknown;
 }
