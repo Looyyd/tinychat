@@ -48,3 +48,33 @@ export interface ToolCall {
 export type ChatMessage = SystemMessage | UserMessage | AssistantMessage | ToolMessage;
 
 export type ChatHistory = ChatMessage[];
+
+export function systemMessage(content: string): SystemMessage {
+  return {
+    role: 'system',
+    content,
+  };
+}
+
+export function userMessage(content: string): UserMessage {
+  return {
+    role: 'user',
+    content,
+  };
+}
+
+export function assistantMessage(content: string, tool_calls?: ToolCall[]): AssistantMessage {
+  return {
+    role: 'assistant',
+    content,
+    tool_calls,
+  };
+}
+
+export function toolMessage(content: string, tool_call_id: string): ToolMessage {
+  return {
+    role: 'tool',
+    content,
+    tool_call_id,
+  };
+}
