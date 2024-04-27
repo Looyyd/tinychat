@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
-import { ChatModel, ChatResponse, Tool } from './ChatModel';
+import { ChatModel, ChatResponse } from './ChatModel';
 import { ChatHistory, AssistantMessage } from './Message';
+import { Tool } from './Tool';
 
 export interface OpenAIChatModelOptions {
   apiKey?: string;
@@ -32,15 +33,16 @@ export class OpenAIChatModel implements ChatModel {
       allTools = [...options.tools];
     } else if (this.tools) {
       allTools = [...this.tools];
-    } else {
-      allTools = [];
     }
+
+    // Doesn't accept empty array
+    const toolData = allTools.length > 0 ? allTools.map((tool) => tool.data) : undefined;
 
     try {
       const response = await this.openai.chat.completions.create({
         model: this.modelName,
         messages: messages,
-        tools: allTools.map((tool) => tool.data),
+        tools: toolData,
       });
 
       const assistantMessage: AssistantMessage = {

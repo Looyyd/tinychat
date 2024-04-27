@@ -1,6 +1,7 @@
 import { OpenAIChatModel } from './OpenAIChatModel';
 import { ChatHistory } from './Message';
-import { Tool, ChatResponse } from './ChatModel';
+import { ChatResponse } from './ChatModel';
+import { Tool } from './Tool';
 
 export interface AgenticCallOptions {
   tools?: Tool[];

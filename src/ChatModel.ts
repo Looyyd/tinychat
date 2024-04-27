@@ -9,19 +9,3 @@ export interface ChatResponse {
   answer: AssistantMessage;
   rawResponse: unknown;
 }
-
-export interface ToolData {
-  type: 'function';
-  function: {
-    name: string;
-    description: string;
-    parameters: {
-      [x: string]: unknown;
-    };
-  };
-}
-
-export interface Tool<T = { [key: string]: unknown }> {
-  data: ToolData;
-  execute: (input: T) => Promise<string>;
-}
