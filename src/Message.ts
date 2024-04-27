@@ -49,6 +49,30 @@ export type ChatMessage = SystemMessage | UserMessage | AssistantMessage | ToolM
 
 export type ChatHistory = ChatMessage[];
 
+export function prettyFormatChatHistory(history: ChatHistory): string {
+  return history
+    .map((message) => {
+      switch (message.role) {
+        case 'system':
+          return `[System] ${message.content}`;
+        case 'user':
+          return `[User] ${message.content}`;
+        case 'assistant':
+          const toolCalls = message.tool_calls
+            ? message.tool_calls
+                .map((toolCall) => `[Tool Call] ${toolCall.function.name}(${toolCall.function.arguments})`)
+                .join('\n')
+            : '';
+          return `[Assistant] ${message.content}${toolCalls ? `\n${toolCalls}` : ''}`;
+        case 'tool':
+          return `[Tool] ${message.content}`;
+        default:
+          return '';
+      }
+    })
+    .join('\n');
+}
+
 export function systemMessage(content: string): SystemMessage {
   return {
     role: 'system',
