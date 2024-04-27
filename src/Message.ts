@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 export type ChatRole = 'system' | 'user' | 'assistant' | 'tool';
 
 // TODO: metadata such as:
@@ -71,6 +73,16 @@ export function prettyFormatChatHistory(history: ChatHistory): string {
       }
     })
     .join('\n');
+}
+
+export function prettyFormatChatHistoryWithColors(history: ChatHistory): string {
+  const formattedHistory = prettyFormatChatHistory(history);
+  return formattedHistory
+    .replace(/\[System\]/g, chalk.green('[System]'))
+    .replace(/\[User\]/g, chalk.blue('[User]'))
+    .replace(/\[Assistant\]/g, chalk.magenta('[Assistant]'))
+    .replace(/\[Tool Call\]/g, chalk.cyan('[Tool Call]'))
+    .replace(/\[Tool\]/g, chalk.yellow('[Tool]'));
 }
 
 export function systemMessage(content: string): SystemMessage {

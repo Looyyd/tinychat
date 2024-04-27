@@ -31,9 +31,9 @@ export class AgenticOpenAIChatModel extends OpenAIChatModel {
 
           // Append the tool output to the messages and make another call
           messages.push({ role: 'tool', content: toolOutput, tool_call_id: toolCall.id });
-          return this.agenticCall(messages, options);
         }
       }
+      return this.agenticCall(messages, options);
     }
 
     return response;
